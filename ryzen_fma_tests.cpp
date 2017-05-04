@@ -5,6 +5,7 @@
 extern "C" uint64_t t128_fma(float a, float b, int cnt, float* dummy);
 extern "C" uint64_t t256_fma(float a, float b, int cnt, float* dummy);
 extern "C" uint64_t t128_fma1_add1(float a, float b, int cnt, float* dummy);
+extern "C" uint64_t t128_fma1_add1_m9a5(float a, float b, int cnt, float* dummy);
 extern "C" uint64_t t128_fma2_add1(float a, float b, int cnt, float* dummy);
 extern "C" uint64_t t256_fma1_add1(float a, float b, int cnt, float* dummy);
 extern "C" uint64_t t256_fma2_add1(float a, float b, int cnt, float* dummy);
@@ -27,7 +28,8 @@ int main()
 {
   run_test("FMA128 * 1", t128_fma);
   run_test("FMA256 * 1", t256_fma);
-  run_test("FMA128 * 1 + FADD128 * 1", t128_fma1_add1);
+  run_test("FMA128 * 1 + FADD128 * 1 (10+4 accum)", t128_fma1_add1);
+  run_test("FMA128 * 1 + FADD128 * 1 (9+5 accum)",  t128_fma1_add1_m9a5);
   run_test("FMA256 * 1 + FADD256 * 1", t256_fma1_add1);
   run_test("FMA128 * 2 + FADD128 * 1", t128_fma2_add1);
   run_test("FMA256 * 2 + FADD256 * 1", t256_fma2_add1);
